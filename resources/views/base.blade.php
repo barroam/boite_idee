@@ -46,7 +46,6 @@
                     @endif
                 </li>
                 <li class="nav-item">
-
                     @if(Auth::check())
                     <form action="{{route('logout')}}" method="POST" role="search">
                     @csrf

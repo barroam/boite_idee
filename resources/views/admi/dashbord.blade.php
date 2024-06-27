@@ -5,7 +5,6 @@
     <ul class="list-group">
         <li class="list-group-item active" aria-current="true">Les catégories</li>
         @foreach ($categories as $categorie)
-
         <li class="list-group-item">  {{$categorie->libelle}}
             <div class="d-flex " style="gap:2rem;" >
                  <a class="btn btn-primary" href="{{route('categorie.edit',$categorie)}}">Modifier </a>

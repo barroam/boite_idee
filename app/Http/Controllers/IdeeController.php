@@ -3,39 +3,59 @@
 namespace App\Http\Controllers;
 
 use App\Models\Idee;
+use App\Models\Categorie;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreIdeeRequest;
 use Illuminate\Support\Facades\Request;
 use App\Http\Requests\UpdateIdeeRequest;
 
 class IdeeController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      */
+
     public function index()
     {
             // Récupérez toutes les idées
             $idees = Idee::all();
+             $categories = Categorie::all();
             // Passez les idées à la vue
-            return view('idees.home', compact('idees'));
+            return view('idees.home', compact('idees','categories'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+ public function create(Idee $idee)
     {
-        //
-        return view ('idees/store');
+        $idee = Idee::all();
+        $categories = Categorie::all();
+       return view ('idees/store',compact('idee','categories'));
     }
+
+
+    // public function affiche_idee_categorie(){
+     //   $idee = Idee::all();
+      //  $categories = Categorie::all();
+     //   return view ('idees/store',compact('idee','categories'));
+    // }
+
 
     /**
      * Store a newly created resource in storage.
      */
+
+
+
     public function store(StoreIdeeRequest $request )
     {
      //
-     Idee::create($request->validated());
+    $request= $request->validated();
+     $request['user_id']= Auth::id();
+    $request['status']= 'en attente';
+    Idee::create($request);
      return redirect()->back()->with('succes','Ajout reussi');
 
     }
@@ -46,8 +66,12 @@ class IdeeController extends Controller
     public function show(Idee $idee)
     {
         //
-        $idee = Idee::findOrFail($id);
-        return view('idees.show', compact('idee'));
+
+        $categories = Categorie::all();
+       return view ('idees/show',compact('idee','categories'));
+
+      //  $idee = Idee::findOrFail($id);
+        //return view('idees.show', compact('idee'));
     }
 
     /**
@@ -55,9 +79,8 @@ class IdeeController extends Controller
      */
     public function edit(Idee $idee)
     {
-
-        return view('idees.edit', compact('idee'));
-
+        $categories = Categorie::all();
+        return view('idees.edit', compact('idee','categories'));
     }
 
     /**
@@ -65,10 +88,11 @@ class IdeeController extends Controller
      */
     public function update(UpdateIdeeRequest $request, Idee $idee)
     {
-        //
-        $idee->update($request->validated());
+        $request= $request->validated();
+        $request['user_id']= Auth::id();
+       $request['status']= 'en attente';
+        $idee->update($request);
         return redirect()->back()->with('succes','Modification reussi');
-
 }
     /**
      * Remove the specified resource from storage.
