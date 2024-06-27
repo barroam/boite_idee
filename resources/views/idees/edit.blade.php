@@ -9,6 +9,7 @@
     {{ session('succes') }}
 </div>
 @endif
+
 <form action="{{route('idee.update',$idee)}}" method="post">
     @csrf
     @method('PUT')
@@ -21,6 +22,14 @@
         <input type="text" class="form-control" id="libelle" name="libelle" value="{{$idee->libelle}}" placeholder="Entrez le libellé">
     </div>
 
+   <div>
+    <label for="categorie_id">Catégorie :</label>
+    <select name="categorie_id" id="categorie_id">
+        @foreach($categories as $categorie)
+            <option value="{{ $categorie->id }}">{{ $categorie->libelle }}</option>
+        @endforeach
+    </select>
+   </div>
     <div class="form-group">
         <label for="date_creation">Date de création</label>
         <input type="date" class="form-control" id="date_creation" name="date_creation" value="{{$idee->date_creation}}">
@@ -29,6 +38,13 @@
         <label for="description">Description</label>
         <textarea class="form-control" id="description" name="description" rows="3" placeholder="Entrez la description"> {{ $idee->description }} </textarea>
     </div>
+    <div class="form-group">
+        <input type="hidden" class="form-control" id="status" name="status" value="en attente">
+    </div>
+    <div class="form-group">
+     <input type="hidden" class="form-control" id="user_id" name="user_id" value="1">
+    </div>
+
     <button type="submit" class="btn btn-primary">Soumettre</button>
 </form>
 

@@ -20,11 +20,7 @@ class Idee extends Model
         'categorie_id',
         'user_id',
     ];
-    /**
-     * Get the user that owns the Idee
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
+   
     public function categories(): BelongsTo
     {
                 return $this->belongsTo(Categorie::class);

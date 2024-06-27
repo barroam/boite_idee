@@ -8,7 +8,6 @@
     {{ session('succes') }}
 </div>
 @endif
-
 <form action="{{ route ('idee.store')}}" method="post">
     @csrf
     @method('POST')
@@ -22,18 +21,15 @@
         <label for="libelle">Libellé</label>
         <input type="text" class="form-control" id="libelle" name="libelle" placeholder="Entrez le libellé">
     </div>
+<div>
+    <label for="categorie_id">Catégorie :</label>
+    <select name="categorie_id" id="categorie_id">
+        @foreach($categories as $categorie)
+            <option value="{{ $categorie->id }}">{{ $categorie->libelle }}</option>
+        @endforeach
+    </select>
+</div>
 
-{{$idee->categorie_id}}
-    @foreach($categories as $categorie)
-    @if($categorie->id )
-        <p class="card-text"><strong>Catégorie:</strong> {{$categorie->libelle }}</p>
-    @endif
-    @endforeach
-
-    <div class="form-group">
-        <label for="categorie">Catégorie</label>
-        <input type="text" class="form-control" id="categorie" name="categorie" placeholder="Entrez la catégorie">
-    </div>
 
     <div class="form-group">
         <label for="date_creation">Date de création</label>
@@ -43,6 +39,12 @@
     <div class="form-group">
         <label for="description">Description</label>
         <textarea class="form-control" id="description" name="description" rows="3" placeholder="Entrez la description"></textarea>
+    </div>
+    <div class="form-group">
+        <input type="hidden" class="form-control" id="status" name="status" value="en attente">
+    </div>
+    <div class="form-group">
+     <input type="hidden" class="form-control" id="user_id" name="user_id" value="1">
     </div>
 
     <button type="submit" class="btn btn-primary">Soumettre</button>
