@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Idee;
+use App\Models\Categorie;
 use App\Http\Requests\StoreIdeeRequest;
 use Illuminate\Support\Facades\Request;
 use App\Http\Requests\UpdateIdeeRequest;
@@ -16,17 +17,20 @@ class IdeeController extends Controller
     {
             // Récupérez toutes les idées
             $idees = Idee::all();
+            $categories = Categorie::all();
             // Passez les idées à la vue
-            return view('idees.home', compact('idees'));
+            return view('idees.home', compact('idees','categories'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Idee $idee)
     {
         //
-        return view ('idees/store');
+        $idee = Idee::findOrFail( $idee);
+        $categories = Categorie::all();
+        return view ('idees/store',compact('idee','categories'));
     }
 
     /**

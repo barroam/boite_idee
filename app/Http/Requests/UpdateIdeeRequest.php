@@ -24,13 +24,13 @@ class UpdateIdeeRequest extends FormRequest
         return [
             //
 
-           'auteur'=> ['required ','string'],
+          'auteur'=> ['required ','string'],
             'libelle'=> ['required' ,'string'],
             'description'=> ['required' ,'string'],
             'status'=>['required','string'],
-            'categorie'=> ['required' ,'string'],
             'date_creation'=> ['required' ,'date'],
-
+            'categorie_id'=>['required','integer'],
+            'user_id'=>['required','integer'],
         ];
     }
 }
