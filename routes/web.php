@@ -11,7 +11,7 @@ Route::get('/', function () {
 });
 
 Route::resource('idee', IdeeController::class);
-
+// les routes pour l'authentification
 Route::controller(AuthController::class)->group(function () {
  Route::get('register', 'register');
  Route::post('register', 'registerPost')->name('registerPost');
@@ -19,8 +19,10 @@ Route::controller(AuthController::class)->group(function () {
  Route::post('login','loginPost')->name('loginPost');
  Route::delete('logout','logout')->name('logout');
 });
-
+//la route pour la gestions des catégories
 Route::resource('categorie',CategoriesController::class);
-Route::get('affiche',[IdeeController::class,'affiche_idee_categorie']);
-
+// la route pour la gestion des commentaires
 Route::resource('commentaire',CommentaireController::class);
+// les routes pour l'status de l'idée
+Route::put('idees/{id}/approuver', [IdeeController::class, 'approuver'])->name('idees.approuver');
+Route::put('idees/{id}/refuser', [IdeeController::class, 'refuser'])->name('idees.refuser');

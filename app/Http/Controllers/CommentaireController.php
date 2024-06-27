@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Commentaire;
 use Illuminate\Http\Request;
 
 class CommentaireController extends Controller
@@ -12,6 +12,8 @@ class CommentaireController extends Controller
     public function index()
     {
         //
+          // Récupérez toutes les idées
+
     }
 
     /**
@@ -20,14 +22,18 @@ class CommentaireController extends Controller
     public function create()
     {
         //
+
+
+
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store( Request $request ,Commentaire $commentaire )
     {
-        //
+        Commentaire::create($request->validate());
+        return redirect()->back()->with('succes','Ajout reussi');
     }
 
     /**
@@ -41,17 +47,23 @@ class CommentaireController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Commentaire $commentaire)
     {
         //
+
+        return view ('commentaires.edit',compact('commentaire'));
+
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Commentaire $commentaire)
     {
         //
+        $commentaire->update($request->validated());
+        return redirect()->back()->with('succes','Ajout reussi');
+
     }
 
     /**
@@ -60,5 +72,6 @@ class CommentaireController extends Controller
     public function destroy(string $id)
     {
         //
+        
     }
 }

@@ -18,7 +18,7 @@ class CategoriesController extends Controller
                // Récupérez toutes les idées
                $categories = Categorie::all();
                // Passez les idées à la vue
-               return view('admi.dashbord', compact('categories'));
+               return view('categories/index', compact('categories'));
     }
 
     /**

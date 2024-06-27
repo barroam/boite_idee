@@ -12,6 +12,7 @@ class Idee extends Model
     use HasFactory;
 
     protected $fillable = [
+
         'auteur',
         'libelle',
         'description',
@@ -19,15 +20,20 @@ class Idee extends Model
         'date_creation',
         'categorie_id',
         'user_id',
+
     ];
-   
+
     public function categories(): BelongsTo
     {
                 return $this->belongsTo(Categorie::class);
     }
-    public function user(): BelongsTo
+    public function user()
     {
                 return $this->belongsTo(User::class);
+    }
+    public function idee(): HasManyThrough
+    {
+        return $this->hasManyThrough(Idee::class);
     }
 
 }
