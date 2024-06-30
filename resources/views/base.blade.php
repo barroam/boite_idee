@@ -7,7 +7,7 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            background-color: #f8f9fa;
+            background-color: #e9eaf1;
         }
         .navbar, .footer {
             background-color: #007bff; /* Bleu Bootstrap */
@@ -25,7 +25,7 @@
 <body>
     <!-- Menu -->
     <nav class="navbar navbar-expand-lg navbar-dark">
-        <a class="navbar-brand" href="#">Boîte à Idées</a>
+        <a class="navbar-brand" href="{{route('idee.index')}}">Boîte à Idées</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -35,10 +35,7 @@
                     <a class="nav-link" href="{{ route('idee.index')}}">Accueil</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('idee.store')}}">Idées</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('idee.create')}}">Ajout</a>
+                    <a class="nav-link" href="{{ route('categorie.index')}}">Catégories</a>
                 </li>
                 <li class="nav-item">
                     @if (Auth::guest())
@@ -60,12 +57,14 @@
     </nav>
 
     <!-- Contenu principal -->
-    <div class="container mt-5">
+    <div class="" style="">
 @yield('main')
     </div>
+<div style="height: 3rem;">
 
+</div>
     <!-- Footer -->
-    <footer class="footer">
+    <footer class="footer" style=" ">
         <div class="container">
             <p>&copy; 2024 Boîte à Idées. Tous droits réservés.</p>
         </div>

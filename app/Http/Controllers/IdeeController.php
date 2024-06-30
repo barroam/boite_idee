@@ -4,10 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Idee;
 use App\Models\Categorie;
+use App\Mail\IdeeApprouvee;
+use App\Models\Commentaire;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\StoreIdeeRequest;
 use Illuminate\Support\Facades\Request;
 use App\Http\Requests\UpdateIdeeRequest;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class IdeeController extends Controller
 {
@@ -30,11 +34,14 @@ class IdeeController extends Controller
      */
  public function create(Idee $idee)
     {
-        $idee = Idee::all();
-        $categories = Categorie::all();
-       return view ('idees/store',compact('idee','categories'));
+        if (Auth::check()) {
+            $idee = Idee::all();
+            $categories = Categorie::all();
+            return view('idees.store', compact('idee', 'categories'));
+        } else {
+            return  view ('auth.login'); // Assurez-vous que la route 'login' est définie dans vos fichiers de route
+        }
     }
-
 
     // public function affiche_idee_categorie(){
      //   $idee = Idee::all();
@@ -67,12 +74,16 @@ class IdeeController extends Controller
     {
         //
 
+        $commentaires = Commentaire::all()->where('idee_id',$idee->id);
         $categories = Categorie::all();
-       return view ('idees/show',compact('idee','categories'));
+        return view ('idees/show',compact('idee','categories' ,'commentaires'));
 
-      //  $idee = Idee::findOrFail($id);
+       //  $idee = Idee::findOrFail($id);
         //return view('idees.show', compact('idee'));
     }
+
+
+
 
     /**
      * Show the form for editing the specified resource.
@@ -81,6 +92,7 @@ class IdeeController extends Controller
     {
         $categories = Categorie::all();
         return view('idees.edit', compact('idee','categories'));
+
     }
 
     /**
@@ -88,11 +100,35 @@ class IdeeController extends Controller
      */
     public function update(UpdateIdeeRequest $request, Idee $idee)
     {
-        $request= $request->validated();
+        $request = $request->validated();
         $request['user_id']= Auth::id();
        $request['status']= 'en attente';
-        $idee->update($request);
+        $idee->update($request->validated());
         return redirect()->back()->with('succes','Modification reussi');
+}
+
+
+public function approuver($id)
+{
+    $idee = Idee::findOrFail($id);
+    $idee->update(['status' => 'approuvée']);
+
+
+    // Envoyer l'email à l'utilisateur après avoir approuvé l'idée
+    Mail::to($idee->user->email)->send(new IdeeApprouvee($idee));
+
+    return redirect()->route('idee.show', $idee->id)->with('success', 'Idée approuvée avec succès.');
+}
+
+/**
+ * Refuser l'idée.
+ */
+public function refuser($id)
+{
+    $idee = Idee::findOrFail($id);
+    $idee->update(['status' => 'refusée']);
+   Mail::to($idee->user->email)->send(new IdeeApprouvee($idee));
+    return redirect()->route('idee.show', $idee->id)->with('success', 'Idée refusée avec succès.');
 }
     /**
      * Remove the specified resource from storage.

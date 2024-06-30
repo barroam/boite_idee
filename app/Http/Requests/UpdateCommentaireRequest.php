@@ -3,9 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Http\Requests\StoreCommentaireRequest;
+use App\Http\Requests\UpdateCommentaireRequest;
 
-class StoreCommentaireRequest extends FormRequest
+class UpdateCommentaireRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

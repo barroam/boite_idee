@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Commentaire;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreCommentaireRequest;
+use App\Http\Controllers\CommentaireController;
+use App\Http\Requests\UpdateCommentaireRequest;
 
 class CommentaireController extends Controller
 {
@@ -25,9 +29,11 @@ class CommentaireController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store( StoreCommentaireRequest $request)
     {
         //
+        Commentaire::create($request->validated());
+        return  redirect()->back();
     }
 
     /**
@@ -41,24 +47,29 @@ class CommentaireController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Commentaire $commentaire)
     {
-        //
+
+        return view ('commentaires/edit',compact('commentaire'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateCommentaireRequest $request, Commentaire $commentaire)
     {
-        //
+        $commentaire->update($request->validated());
+        return  redirect()->back();
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Commentaire $commentaire)
     {
         //
+        $commentaire->delete();
+        return redirect()->back();
     }
+
 }

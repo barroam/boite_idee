@@ -12,6 +12,11 @@ class Commentaire extends Model
 
         'auteur',
         'contenu',
-        
+        'idee_id'
+
     ];
+    public function idee(): BelongsTo
+    {
+       return $this->belongsTo(idee::class);
+    }
 }

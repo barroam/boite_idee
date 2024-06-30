@@ -1,6 +1,9 @@
 @extends('base')
 
 @section('main')
+<div class="container mt-4">
+
+
 <a class="btn btn-primary text-center" href="/idee" style="float: right" >Retour</a>
 <h1 class="d-flex text-align-center" > ajouter une idée </h1>
 @if(session('succes'))
@@ -49,5 +52,5 @@
 
     <button type="submit" class="btn btn-primary">Soumettre</button>
 </form>
-
+</div>
 @endsection
