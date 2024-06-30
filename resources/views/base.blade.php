@@ -7,7 +7,7 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            background-color: #f8f9fa;
+            background-color: #e9eaf1;
         }
         .navbar, .footer {
             background-color: #007bff; /* Bleu Bootstrap */
@@ -57,10 +57,10 @@
     </nav>
 
     <!-- Contenu principal -->
-    <div class="container mt-5">
+    <div class="" style="">
 @yield('main')
     </div>
-<div style="height: 5rem;">
+<div style="height: 3rem;">
 
 </div>
     <!-- Footer -->

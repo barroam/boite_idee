@@ -9,9 +9,10 @@ class Commentaire extends Model
 {
     use HasFactory;
     protected $fillable = [
-        
+
         'auteur',
         'contenu',
+        'idee_id'
 
     ];
     public function idee(): BelongsTo

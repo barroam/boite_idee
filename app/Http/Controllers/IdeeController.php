@@ -34,11 +34,14 @@ class IdeeController extends Controller
      */
  public function create(Idee $idee)
     {
-        $idee = Idee::all();
-        $categories = Categorie::all();
-       return view ('idees/store',compact('idee','categories'));
+        if (Auth::check()) {
+            $idee = Idee::all();
+            $categories = Categorie::all();
+            return view('idees.store', compact('idee', 'categories'));
+        } else {
+            return  view ('auth.login'); // Assurez-vous que la route 'login' est définie dans vos fichiers de route
+        }
     }
-
 
     // public function affiche_idee_categorie(){
      //   $idee = Idee::all();
@@ -71,7 +74,7 @@ class IdeeController extends Controller
     {
         //
 
-        $commentaires = Commentaire::all();
+        $commentaires = Commentaire::all()->where('idee_id',$idee->id);
         $categories = Categorie::all();
         return view ('idees/show',compact('idee','categories' ,'commentaires'));
 
@@ -100,7 +103,7 @@ class IdeeController extends Controller
         $request = $request->validated();
         $request['user_id']= Auth::id();
        $request['status']= 'en attente';
-        $idee->update($request);
+        $idee->update($request->validated());
         return redirect()->back()->with('succes','Modification reussi');
 }
 

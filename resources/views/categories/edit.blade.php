@@ -1,5 +1,6 @@
 @extends('base')
 @section('main')
+<div class="container mt-4">
 <div style="display:flex; gap:2rem; justify-content-around">
 
 
@@ -18,4 +19,5 @@
 
 </div>
 <div style="width: 100%; height:2rem;"></div>
+</div>
 @endsection

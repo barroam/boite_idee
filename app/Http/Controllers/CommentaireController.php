@@ -1,8 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Commentaire;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreCommentaireRequest;
+use App\Http\Controllers\CommentaireController;
+use App\Http\Requests\UpdateCommentaireRequest;
 
 class CommentaireController extends Controller
 {
@@ -12,8 +16,6 @@ class CommentaireController extends Controller
     public function index()
     {
         //
-          // Récupérez toutes les idées
-
     }
 
     /**
@@ -22,18 +24,16 @@ class CommentaireController extends Controller
     public function create()
     {
         //
-
-
-
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store( Request $request ,Commentaire $commentaire )
+    public function store( StoreCommentaireRequest $request)
     {
-        Commentaire::create($request->validate());
-        return redirect()->back()->with('succes','Ajout reussi');
+        //
+        Commentaire::create($request->validated());
+        return  redirect()->back();
     }
 
     /**
@@ -49,29 +49,27 @@ class CommentaireController extends Controller
      */
     public function edit(Commentaire $commentaire)
     {
-        //
 
-        return view ('commentaires.edit',compact('commentaire'));
-
+        return view ('commentaires/edit',compact('commentaire'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Commentaire $commentaire)
+    public function update(UpdateCommentaireRequest $request, Commentaire $commentaire)
     {
-        //
         $commentaire->update($request->validated());
-        return redirect()->back()->with('succes','Ajout reussi');
-
+        return  redirect()->back();
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Commentaire $commentaire)
     {
         //
-        
+        $commentaire->delete();
+        return redirect()->back();
     }
+
 }

@@ -1,23 +1,15 @@
 @extends('base')
 @section('main')
-<div class="container mt-5" style="margin-top: -3rem">
-    <div class="card">
-        <div class="card-header bg-primary text-white text-center">
-            <h2>Projet N°{{$idee->id}}</h2>
-        </div>
-        <img src="https://img.freepik.com/photos-gratuite/arc-fleche-tir-arc-cible-derriere_91128-4447.jpg?t=st=1719534699~exp=1719538299~hmac=d5ce09104f35f246d456e179ccc5fd3a2aef2d83075cad4e60f52f2fc9fd3bbc&w=1380" class="card-img-top" alt="Bannière de l'événement">
-
+<div class="" style="">
+    <div class="card" style="">
+        <img src="https://img.freepik.com/photos-gratuite/arc-fleche-tir-arc-cible-derriere_91128-4447.jpg?t=st=1719534699~exp=1719538299~hmac=d5ce09104f35f246d456e179ccc5fd3a2aef2d83075cad4e60f52f2fc9fd3bbc&w=1380"  style="height: 25rem; object-fit:cover;">
         <div class="card-body">
-<div style="float: right ; font-size:1.5rem;"><strong>Projet :</strong> <p class="badge bg-dark text-light"> {{$idee->status}}  </p> </div>
-
-            <h5 class="card-title">Description</h5>
+            <h3 class="card-title text-center text-primary"> <strong>Titre: </strong>{{$idee->libelle}}</h3>
+<div class="rounded-1 " style="float:right ;font-size:1.5rem;"><strong> Approbation :</strong> <p class="badge bg-dark text-light"> {{$idee->status}}  </p> </div>
+<h5 class="card-title"><strong>Description:</strong> </h5>
             <p class="card-text">
                 {{$idee->description}}
             </p>
-
-
-
-            <h5 class="card-title">{{$idee->libelle}}</h5>
             <p class="card-text">
                 <ul class="list-unstyled">
 
@@ -26,9 +18,9 @@
                     <li><strong>Catégorie:</strong> {{$categorie->libelle}}</li>
                     @endif
                     @endforeach
-                    <li><strong>Marie Curie:</strong> {{$idee->created_at}}</li>
-                    <li><strong>Albert Einstein:</strong> {{$idee->user->email}}</li>
-                    <li><strong>Albert Einstein:</strong> {{$idee->user->role}}</li>
+                    <li>{{$idee->created_at}}</li>
+                    <li><strong>Addresse Email:</strong> {{$idee->user->email}}</li>
+
                 </ul>
             </p>
 
@@ -51,7 +43,11 @@
                                     </div>
                                 </div>
                                 <a href="{{route ('commentaire.edit', $commentaire )}}">Modifier</a>
-                                <a href="#">Supprimer</a>
+                                <form action="{{route('commentaire.destroy',$commentaire)}}" method="POST">
+                                    @csrf
+                                    @method("DELETE")
+                                    <button type="submit" class="btn btn-danger">Supprimer</button>
+                                </form>
                             </li>
                             @endforeach
                             <!-- Ajoutez plus de <li> pour chaque commentaire -->
@@ -60,14 +56,17 @@
                     <div class="col-md-4">
                         <h3>Ajouter un commentaire</h3>
                         <!-- Formulaire d'ajout de commentaire -->
-                        <form action="#" method="POST">
+                        <form action="{{route('commentaire.store')}}" method="POST">
+                            @csrf
+                            @method('POST')
                             <div class="form-group">
-                                <label for="nomUtilisateur">Nom</label>
-                                <input type="text" class="form-control" id="nomUtilisateur" name="nomUtilisateur">
+                             <!--  -->   <input type="hidden" name="idee_id" value="{{$idee->id}}">
+                                <label for="auteur">Nom</label>
+                                <input type="text" class="form-control" id="auteur" name="auteur">
                             </div>
                             <div class="form-group">
-                                <label for="contenuCommentaire">Commentaire</label>
-                                <textarea class="form-control" id="contenuCommentaire" name="contenuCommentaire" rows="3"></textarea>
+                                <label for="contenu">Commentaire</label>
+                                <textarea class="form-control" id="contenu" name="contenu" rows="3"></textarea>
                             </div>
                             <button type="submit" class="btn btn-primary">Envoyer</button>
                         </form>
@@ -83,21 +82,26 @@
 
 <div class="d-flex justify-content-center align-items-center  " style="margin-top:3rem; gap:2rem;">
    <!-- Formulaire pour approuver -->
+   @if(Auth::check() && Auth::user()->isAdmin())
+
    <form action="{{ route('idees.approuver', $idee->id) }}" method="POST" style="display: inline;">
     @csrf
     @method('PUT')
 
     <button type="submit" class="btn btn-success">Approuver</button>
 </form>
+@endif
 
 <!-- Formulaire pour refuser -->
+@if(Auth::check() && Auth::user()->isAdmin())
+
 <form action="{{ route('idees.refuser', $idee->id) }}" method="POST" style="display: inline;">
     @csrf
     @method('PUT')
 
     <button type="submit" class="btn btn-danger">Refuser</button>
 </form>
-
+@endif
 </div>
 
 

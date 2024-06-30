@@ -20,9 +20,16 @@ Route::controller(AuthController::class)->group(function () {
  Route::delete('logout','logout')->name('logout');
 });
 //la route pour la gestions des catégories
-Route::resource('categorie',CategoriesController::class);
+Route::resource('categorie',CategoriesController::class)->middleware('auth');
 // la route pour la gestion des commentaires
-Route::resource('commentaire',CommentaireController::class);
+Route::resource('commentaire',CommentaireController::class)->middleware('auth');
 // les routes pour l'status de l'idée
-Route::put('idees/{id}/approuver', [IdeeController::class, 'approuver'])->name('idees.approuver');
-Route::put('idees/{id}/refuser', [IdeeController::class, 'refuser'])->name('idees.refuser');
+
+Route::controller(IdeeController::class)->group(function(){
+    Route::middleware('auth')->group(function() {
+    Route::put('idees/{id}/approuver', 'approuver')->name('idees.approuver');
+    Route::put('idees/{id}/refuser', 'refuser')->name('idees.refuser');
+});
+});
+
+
