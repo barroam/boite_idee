@@ -16,4 +16,6 @@ class Categorie extends Model
     {
         return $this->hasManyThrough(Idee::class);
     }
+    
+
 }

@@ -35,7 +35,9 @@
                     <a class="nav-link" href="{{ route('idee.index')}}">Accueil</a>
                 </li>
                 <li class="nav-item">
+                    @if(Auth::check() && Auth::user()->isAdmin())
                     <a class="nav-link" href="{{ route('categorie.index')}}">Catégories</a>
+                    @endif
                 </li>
                 <li class="nav-item">
                     @if (Auth::guest())

@@ -19,11 +19,13 @@ Route::controller(AuthController::class)->group(function () {
  Route::post('login','loginPost')->name('loginPost');
  Route::delete('logout','logout')->name('logout');
 });
+
+Route::middleware(['auth'])->group(function () {
 //la route pour la gestions des catégories
-Route::resource('categorie',CategoriesController::class)->middleware('auth');
+Route::resource('categorie',CategoriesController::class);
 // la route pour la gestion des commentaires
-Route::resource('commentaire',CommentaireController::class)->middleware('auth');
-// les routes pour l'status de l'idée
+Route::resource('commentaire',CommentaireController::class);
+});
 
 Route::controller(IdeeController::class)->group(function(){
     Route::middleware('auth')->group(function() {

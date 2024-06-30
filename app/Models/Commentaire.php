@@ -19,4 +19,6 @@ class Commentaire extends Model
     {
        return $this->belongsTo(idee::class);
     }
+  
+
 }

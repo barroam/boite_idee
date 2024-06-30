@@ -90,6 +90,15 @@ class IdeeController extends Controller
      */
     public function edit(Idee $idee)
     {
+
+        if (!auth()->check()) {
+            return redirect()->back();
+        }
+
+        if (  auth()->user()->id != $idee->user_id) {
+
+            return redirect()->back();
+        }
         $categories = Categorie::all();
         return view('idees.edit', compact('idee','categories'));
 
@@ -100,12 +109,17 @@ class IdeeController extends Controller
      */
     public function update(UpdateIdeeRequest $request, Idee $idee)
     {
+        if (auth()->user()->id != $idee->user_id) {
+
+        return redirect()->back();
+    }
         $request = $request->validated();
         $request['user_id']= Auth::id();
        $request['status']= 'en attente';
         $idee->update($request->validated());
         return redirect()->back()->with('succes','Modification reussi');
-}
+    }
+
 
 
 public function approuver($id)
@@ -135,9 +149,12 @@ public function refuser($id)
      */
     public function destroy(Idee $idee)
     {
-        //
-        $idee->delete();
-        return redirect()->back()->with('succes','supprimer avec succes');
+
+            $idee->delete();
+            return redirect()->back()->with('success', 'Supprimé avec succès.');
+
+        return redirect()->back();
 
     }
+
 }

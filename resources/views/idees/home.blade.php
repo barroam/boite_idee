@@ -58,11 +58,13 @@
 
       <div class="card-footer d-flex justify-content-between bg-light " style="gap:2rem;">
         <a href="{{route ('idee.edit',$idee)}}" class="btn btn-primary">Modifier</a>
+        @if(Auth::check() && Auth::user()->isAdmin())
         <form action="{{route('idee.destroy',$idee)}}" method="POST">
             @csrf
             @method("DELETE")
             <button type="submit" class="btn btn-danger">Supprimer</button>
         </form>
+        @endif
        </div>
     </div>
 </div>
