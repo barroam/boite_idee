@@ -55,7 +55,7 @@ class User extends Authenticatable
     {
         return $this->hasManyThrough(Idee::class);
     }
-    
+
     public function isAdmin()
     {
         return $this->role === 'admin'; // Ajustez en fonction de votre implémentation de rôle

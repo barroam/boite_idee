@@ -1,11 +1,8 @@
 @extends('base')
-
 @section('main')
 <div class="container mt-4">
-
-
 <a class="btn btn-primary text-center" href="/idee" style="float: right" >Retour</a>
-<h1 class="d-flex text-align-center" > ajouter une idée </h1>
+<h1 class="d-flex text-align-center" > Formulaire d'ajout d'une idée </h1>
 @if(session('succes'))
 <div class="alert alert-primary">
     {{ session('succes') }}
@@ -26,7 +23,7 @@
     </div>
 <div>
     <label for="categorie_id">Catégorie :</label>
-    <select name="categorie_id" id="categorie_id">
+    <select name="categorie_id" id="categorie_id" class="form-control">
         @foreach($categories as $categorie)
             <option value="{{ $categorie->id }}">{{ $categorie->libelle }}</option>
         @endforeach

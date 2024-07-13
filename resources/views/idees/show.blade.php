@@ -3,11 +3,11 @@
 <div class="" style="">
     <div class="card" style="">
         <img src="https://img.freepik.com/photos-gratuite/arc-fleche-tir-arc-cible-derriere_91128-4447.jpg?t=st=1719534699~exp=1719538299~hmac=d5ce09104f35f246d456e179ccc5fd3a2aef2d83075cad4e60f52f2fc9fd3bbc&w=1380"  style="height: 25rem; object-fit:cover;">
-        <div class="card-body">
+        <div class="card-body container mt-3">
             <h3 class="card-title text-center text-primary"> <strong>Titre: </strong>{{$idee->libelle}}</h3>
-<div class="rounded-1 " style="float:right ;font-size:1.5rem;"><strong> Approbation :</strong> <p class="badge bg-dark text-light"> {{$idee->status}}  </p> </div>
+<div class="rounded-1 " style=" ;font-size:1.5rem;"><strong> Approbation :</strong> <p class="badge bg-dark text-light"> {{$idee->status}}  </p> </div>
 <h5 class="card-title"><strong>Description:</strong> </h5>
-            <p class="card-text">
+            <p class="card-text" style="font-size: 1.2rem">
                 {{$idee->description}}
             </p>
             <p class="card-text">
@@ -18,7 +18,7 @@
                     <li><strong>Catégorie:</strong> {{$categorie->libelle}}</li>
                     @endif
                     @endforeach
-                    <li>{{$idee->created_at}}</li>
+                    <li><strong>Date de publication:</strong> {{$idee->created_at}}</li>
                     <li><strong>Addresse Email:</strong> {{$idee->user->email}}</li>
 
                 </ul>
@@ -26,7 +26,7 @@
 
         </div>
 
-        <div>
+        <div class="container mt-4">
             <div class=" p-4">
                 <div class="row">
                     <div class="col-md-8">
@@ -80,7 +80,7 @@
 
 
 
-<div class="d-flex justify-content-center align-items-center  " style="margin-top:3rem; gap:2rem;">
+<div class="d-flex justify-content-center align-items-center   " style="margin-top:3rem; gap:2rem;">
    <!-- Formulaire pour approuver -->
    @if(Auth::check() && Auth::user()->isAdmin())
 

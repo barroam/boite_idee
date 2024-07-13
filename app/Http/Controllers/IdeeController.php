@@ -19,6 +19,9 @@ class IdeeController extends Controller
     /**
      * Display a listing of the resource.
      */
+     public function vue(){
+        return view('index');
+     }
 
     public function index()
     {
@@ -116,7 +119,7 @@ class IdeeController extends Controller
         $request = $request->validated();
         $request['user_id']= Auth::id();
        $request['status']= 'en attente';
-        $idee->update($request->validated());
+        $idee->update($request);
         return redirect()->back()->with('succes','Modification reussi');
     }
 
@@ -133,6 +136,7 @@ public function approuver($id)
 
     return redirect()->route('idee.show', $idee->id)->with('success', 'Idée approuvée avec succès.');
 }
+
 
 /**
  * Refuser l'idée.

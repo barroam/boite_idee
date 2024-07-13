@@ -6,9 +6,9 @@ use App\Http\Controllers\IdeeController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\CommentaireController;
 
-Route::get('/', function () {
-    return view('base');
-});
+
+
+Route::get('/',[IdeeController::class,'vue']);
 
 Route::resource('idee', IdeeController::class);
 // les routes pour l'authentification
