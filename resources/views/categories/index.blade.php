@@ -16,8 +16,9 @@
                 </form>
 
             @endforeach
-      </ul>
 
+
+                  </ul>
 
 
 </div>
@@ -38,6 +39,7 @@
 </div>
 
 </div>
+<div style="display: flex; justify-content:center;"> {{$categories->links()}}</div>
 <div style="width: 100%; height:2rem;"></div>
 </div>
 @endsection

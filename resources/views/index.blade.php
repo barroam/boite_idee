@@ -5,8 +5,8 @@
 <section class="hero-section py-5 bg-dark text-light text-center">
     <div class="container">
         <h4 class="display-4 text-center">Bienvenue</h4>
-        <p class="lead">Nous offrons les meilleures solutions pour votre entreprise</p>
-        <a href="{{route('idee.index')}}" class="btn btn-primary btn-lg">Se connecter</a>
+        <p class="lead">Nous offrons les meilleures solutions Vous .</p>
+        <a href="{{route('idee.index')}}" class="btn btn-primary btn-lg">Mettez en place vos idées</a>
     </div>
 </section>
 
@@ -45,38 +45,6 @@
         </div>
     </div>
 </section>
-
-<!-- About Section -->
-<section class="about py-5 bg-white">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 rounded-2">
-                <img class="rounded-3" width="100%" height="auto" style="object-fit: cover;" src="https://media.licdn.com/dms/image/D4E03AQH_edEKl4Lfhg/profile-displayphoto-shrink_800_800/0/1693355856042?e=1726099200&v=beta&t=LVAYolWfo5o0MYPqHA2ZPC6Qbm0hFj31ZSWIy_oKvG8" class="img-fluid" alt="À propos de nous">
-            </div>
-            <div class="col-md-6" style="font-size: 1.2rem">
-                <h2>À propos de Moi</h2>
-                <p>Je suis un développeur fullstack junior passionné,
-                     actuellement en formation chez Simplon Sénégal.
-                     Mon parcours m'a permis de maîtriser les technologies modernes
-                     du développement web.
-                     <br> J'ai  conçu cette application
-                      en utilisant le framework Laravel, reconnu pour sa robustesse et sa
-                      flexibilité. Grâce à MySQL, j'ai mis en place une base de données performante
-                       qui soutient efficacement les fonctionnalités de mon application. Sur le plan
-                        esthétique et ergonomique, j'ai enrichi l'expérience utilisateur en utilisant
-                        Bootstrap et CSS, assurant ainsi une interface utilisateur intuitive et moderne.
-<br>
-                    Mon approche combine créativité et rigueur technique pour
-                     répondre aux besoins spécifiques de mes projets. Je suis particulièrement
-                      enthousiaste à l'idée de contribuer au secteur numérique en développant des
-                      solutions innovantes et évolutives. </p>
-                      <a href="mailto:barroama23@gmail.com" class="btn btn-primary">Contacter moi</a>
-
-            </div>
-        </div>
-    </div>
-</section>
-
 
 
 <section class="services py-5" style="background-color: #f8f9fa;">
@@ -186,7 +154,36 @@
         </div>
     </div>
 </section>
+<!-- About Section -->
+<section class="about py-5 bg-white">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 rounded-2">
+                <img class="rounded-3" width="100%" height="auto" style="object-fit: cover;" src="https://media.licdn.com/dms/image/D4E03AQH_edEKl4Lfhg/profile-displayphoto-shrink_800_800/0/1693355856042?e=1726099200&v=beta&t=LVAYolWfo5o0MYPqHA2ZPC6Qbm0hFj31ZSWIy_oKvG8" class="img-fluid" alt="À propos de nous">
+            </div>
+            <div class="col-md-6" style="font-size: 1.2rem">
+                <h2>À propos de Moi</h2>
+                <p>Je suis un développeur fullstack junior passionné,
+                     actuellement en formation chez Simplon Sénégal.
+                     Mon parcours m'a permis de maîtriser les technologies modernes
+                     du développement web.
+                     <br> J'ai  conçu cette application
+                      en utilisant UML pour faire l'analyse et la conception ,le developpement Backend le framework Laravel, reconnu pour sa robustesse et sa
+                      flexibilité. Grâce à MySQL, j'ai mis en place une base de données performante
+                       qui soutient efficacement les fonctionnalités de mon application. Sur le plan
+                        esthétique et ergonomique, j'ai enrichi l'expérience utilisateur en utilisant
+                        Bootstrap et CSS, assurant ainsi une interface utilisateur intuitive et moderne.
+<br>
+                    Mon approche combine créativité et rigueur technique pour
+                     répondre aux besoins spécifiques de mes projets. Je suis particulièrement
+                      enthousiaste à l'idée de contribuer au secteur numérique en développant des
+                      solutions innovantes et évolutives. </p>
+                      <a href="mailto:barroama23@gmail.com" class="btn btn-primary">Contacter moi</a>
 
+            </div>
+        </div>
+    </div>
+</section>
 <!-- Footer -->
 <!-- Exemple de formulaire de contact -->
 <section class="contact py-5">

@@ -16,7 +16,7 @@ class CategoriesController extends Controller
     {
         //
                // Récupérez toutes les idées
-               $categories = Categorie::all();
+               $categories = Categorie::paginate(5);
                // Passez les idées à la vue
                return view('categories/index', compact('categories'));
     }
