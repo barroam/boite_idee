@@ -1,4 +1,4 @@
-@extends('base')
+@extends('layout.base')
 @section('main')
 <div class="container mt-5">
     <div class="card shadow">

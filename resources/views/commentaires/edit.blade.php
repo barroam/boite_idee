@@ -1,4 +1,4 @@
-@extends('base')
+@extends('layout.base')
 @section('main')
 <div class="container mt-4">
                     <div class="col-md-4">

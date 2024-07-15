@@ -1,4 +1,4 @@
-@extends('base')
+@extends('layout.base')
 @section('main')
 <div style="width: 100%; height:2rem;" >
 </div>

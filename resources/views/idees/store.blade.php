@@ -1,4 +1,4 @@
-@extends('base')
+@extends('layout.base')
 @section('main')
 <div class="container mt-4">
 <a class="btn btn-primary text-center" href="/idee" style="float: right" >Retour</a>

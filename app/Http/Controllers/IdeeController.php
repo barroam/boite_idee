@@ -65,6 +65,7 @@ class IdeeController extends Controller
     $request= $request->validated();
      $request['user_id']= Auth::id();
     $request['status']= 'en attente';
+ 
     Idee::create($request);
      return redirect()->back()->with('succes','Ajout reussi');
 
